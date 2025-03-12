@@ -1,15 +1,16 @@
-name = "your-project-name"
+name = "latifa"
 compatibility_date = "2023-12-01"
 compatibility_flags = ["nodejs_compat"]
 
 [build]
-command = "pnpm run build"
+command = "npm run build"
 
 [site]
 bucket = ".next"
+main = "./.next/server/app/page.js"
 
 [build.upload]
 format = "directory"
 
 [env.production]
-workers_dev = true 
+workers_dev = true

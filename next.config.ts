@@ -5,8 +5,6 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  // Add Cloudflare-specific configuration
-  output: "standalone", // Creates a standalone build that works well with Cloudflare
 };
 
 export default nextConfig;
