@@ -27,7 +27,7 @@ const Cursor = () => {
       document.body.style.cursor = 'auto';
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, []);
+  }, [x, y]);
 
   return (
     <motion.div

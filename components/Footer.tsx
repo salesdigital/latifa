@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail } from 'lucide-react';
 
 export default function Footer() {
   const whatsappNumber = "5511947451820"; // Format: country code + number

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
-import { Star, Quote, X } from 'lucide-react';
+import { Star, X } from 'lucide-react';
 
 const testimonialImages = [
   {
