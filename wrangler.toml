@@ -5,12 +5,10 @@ compatibility_flags = ["nodejs_compat"]
 [build]
 command = "npm run build"
 
-[site]
-bucket = ".next"
-main = "./.next/server/app/page.js"
-
 [build.upload]
 format = "directory"
+dir = ".next"
+main = "./.next/server/app/page.js"
 
 [env.production]
 workers_dev = true
