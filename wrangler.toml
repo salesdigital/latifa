@@ -1,0 +1,15 @@
+name = "your-project-name"
+compatibility_date = "2023-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+[build]
+command = "pnpm run build"
+
+[site]
+bucket = ".next"
+
+[build.upload]
+format = "directory"
+
+[env.production]
+workers_dev = true 
