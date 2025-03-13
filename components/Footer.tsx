@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 import { Phone, Mail } from 'lucide-react';
 
 export default function Footer() {
-  const whatsappNumber = "5511947451820"; // Format: country code + number
+  const whatsappNumber = "5511947451820"; 
   const whatsappMessage = encodeURIComponent("Olá! Gostaria de agendar uma consulta.");
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 

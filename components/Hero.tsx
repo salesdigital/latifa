@@ -77,7 +77,7 @@ const Hero = () => {
           </a>
         </div>
         <motion.div 
-          className="relative w-[300px] md:w-[700px] h-auto md:left-60 mt-8 md:mt-0 "
+          className="relative w-[500px] h-[500px] md:w-[700px] md:h-[700px] md:left-60 mt-8 md:mt-0 "
           animate={{ rotate: 360 }}
           transition={{ 
             repeat: Infinity, 
@@ -85,7 +85,7 @@ const Hero = () => {
             ease: "linear" 
           }}
         >
-          <Image src="/roda-fortuna.png" alt="Hero" className="w-full h-full" width={700} height={800} />
+          <Image src="/roda-fortuna.png" alt="Hero" className="w-full h-full" width={700} height={600} />
         </motion.div>
       </Container>
     </div>
