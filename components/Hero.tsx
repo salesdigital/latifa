@@ -85,7 +85,7 @@ const Hero = () => {
             ease: "linear" 
           }}
         >
-          <Image src="/roda-fortuna.png" alt="Hero" className="w-full h-full" width={700} height={600} />
+          <Image src="/roda-fortuna.png" alt="Hero" className="md:w-[700px] md:h-[700px]" width={700} height={600} />
         </motion.div>
       </Container>
     </div>
