@@ -6,7 +6,7 @@ const About = () => {
   return (
     <section id="sobre" className="bg-gradient-to-br from-red-800 via-red-600 to-red-500 bg-cover bg-center md:min-h-[calc(100vh-100px)] flex items-center py-12 md:py-0">
       <Container>
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center pt-10">
           <h2 className="text-2xl md:text-4xl font-bold text-white font-tanpearl text-center">
             Latifa Sensitiva
           </h2>
@@ -25,9 +25,9 @@ Meu trabalho é baseado na verdade e no respeito ao destino de cada um. Antes de
 Com conhecimento, prática e forte conexão espiritual, ofereço suporte completo para quem busca clareza, amor e transformação.
             </p>
           </div>
-          <div className="flex flex-col items-center justify-center w-full md:w-fit rounded-lg overflow-hidden shadow-lg max-w-[500px]">
+          <div className="flex flex-col mb-10 items-center justify-center w-full md:w-fit rounded-lg overflow-hidden shadow-lg max-w-[500px] h-[500px]">
             <Image 
-              src="/taro.webp" 
+              src="/galeria/cartomante-6.jpg" 
               alt="About" 
               className="w-full h-auto object-cover"
               width={500}

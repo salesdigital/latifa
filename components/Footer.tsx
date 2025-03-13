@@ -46,7 +46,7 @@ export default function Footer() {
         </div>
 
         {/* Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 py-12 border-t border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-12 border-t border-white/10">
           <div>
             <h3 className="font-signora text-2xl mb-4">Latifa Sensitiva</h3>
             <p className="text-white/80">

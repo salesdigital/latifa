@@ -5,9 +5,9 @@ import { motion } from "motion/react";
 
 const Hero = () => {
   return (
-    <div className="bg-gradient-to-br from-red-50 via-orange-50 to-white bg-cover bg-center min-h-[calc(100vh-100px)] flex items-center">
-      <Container className="flex justify-between items-center">
-        <div className="max-w-3xl">
+    <div className="bg-gradient-to-br from-red-50 overflow-hidden via-orange-50 to-white bg-cover bg-center min-h-[calc(100vh-100px)] flex items-center">
+      <Container className="flex flex-col mt-10 md:mt-0 md:flex-row justify-between items-center relative">
+        <div className="max-w-3xl z-10">
           <h1 className="text-red-600 text-4xl md:text-6xl font-bold mb-4 font-tanpearl">
             Latifa Sensitiva
           </h1>
@@ -76,8 +76,16 @@ const Hero = () => {
             Posso te ajudar
           </a>
         </div>
-        <motion.div initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="hidden md:block p-4">
-          <Image src="/lovers.png" alt="Hero" className="w-full h-full hover:scale-105 transition-all duration-500 hover:perspective-1000 hover:rotate-y-180" width={500} height={500} />
+        <motion.div 
+          className="relative w-[300px] md:w-[700px] h-auto md:left-60 mt-8 md:mt-0 "
+          animate={{ rotate: 360 }}
+          transition={{ 
+            repeat: Infinity, 
+            duration: 20, 
+            ease: "linear" 
+          }}
+        >
+          <Image src="/roda-fortuna.png" alt="Hero" className="w-full h-full" width={700} height={800} />
         </motion.div>
       </Container>
     </div>

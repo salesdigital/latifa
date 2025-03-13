@@ -19,7 +19,7 @@ const images = [
     alt: 'Ritual espiritual e proteção',
   },
   {
-    src: '/galeria/cartomante-4.jpg',
+    src: '/galeria/cartomante-4.webp',
     alt: 'Trabalho de amor e união',
   },
   {
@@ -28,7 +28,7 @@ const images = [
   },
   {
     src: '/galeria/cartomante-6.jpg',
-    alt: 'Trabalho de amor e união',
+    alt: 'Abeçoando pessoas na cachoeira',
   },
 ];
 

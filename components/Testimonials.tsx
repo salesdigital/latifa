@@ -22,6 +22,10 @@ const testimonialImages = [
     src: '/testemunhas/testemunho-4.jpg',
     alt: 'Depoimento de cliente satisfeito',
   },
+  {
+    src: '/testemunhas/testemunho-5.jpg',
+    alt: 'Depoimento de cliente satisfeito',
+  },
 ];
 
 const containerVariants = {
