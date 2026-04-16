@@ -36,7 +36,7 @@ const Hero = () => {
               Seu destino está em suas mãos. Dê o primeiro passo para a transformação e permita-me guiá-lo(a) nesse caminho!
             </p>
           </div>
-          <a href="https://wa.me/5511947451820" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r inline-flex items-center gap-2 cursor-pointer from-orange-500 via-red-500 to-red-600 text-white px-6 py-3 rounded-lg font-bold hover:from-orange-600 hover:via-red-600 hover:to-red-700 transition-colors border border-orange-300/20">
+          <a href="https://wa.me/5511971093420" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r inline-flex items-center gap-2 cursor-pointer from-orange-500 via-red-500 to-red-600 text-white px-6 py-3 rounded-lg font-bold hover:from-orange-600 hover:via-red-600 hover:to-red-700 transition-colors border border-orange-300/20">
             <svg
               className="size-4"
               fill="#fff"
