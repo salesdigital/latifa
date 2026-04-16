@@ -107,7 +107,7 @@ const Nav = () => {
                 </svg>
                 <p>WhatsApp</p>
               </div>
-              <a href="https://wa.me/5511947451820" target="_blank" rel="noopener noreferrer">(11) 94745-1820</a>
+              <a href="https://wa.me/5511971093420" target="_blank" rel="noopener noreferrer">(11) 97109-3420</a>
             </div>
           </div>
         </Container>
