@@ -20,6 +20,7 @@ const tanpearl = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://latifasensitiva.top'),
   title: "Latifa Sensitiva | Consultas e Trabalhos Espirituais",
   description: "Consultas espirituais, tarot e trabalhos de amor com a Latifa Sensitiva. Encontre orientação e harmonia em sua vida através da espiritualidade.",
   keywords: ["Latifa Sensitiva", "Tarot Online", "Amarração Amorosa", "Trabalhos Espirituais", "União de Casais", "Vidente", "Cartomante"],
