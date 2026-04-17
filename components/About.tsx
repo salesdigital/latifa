@@ -28,7 +28,7 @@ Com conhecimento, prática e forte conexão espiritual, ofereço suporte complet
           <div className="flex flex-col mb-10 items-center justify-center w-full md:w-fit rounded-lg overflow-hidden shadow-lg max-w-[500px] h-[500px]">
             <Image 
               src="/galeria/cartomante-6.jpg" 
-              alt="About" 
+              alt="Latifa Sensitiva - Vidente e Taróloga oferecendo orientação espiritual" 
               className="w-full h-auto object-cover"
               width={500}
               height={500}

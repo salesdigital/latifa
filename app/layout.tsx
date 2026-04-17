@@ -22,6 +22,49 @@ const tanpearl = localFont({
 export const metadata: Metadata = {
   title: "Latifa Sensitiva | Consultas e Trabalhos Espirituais",
   description: "Consultas espirituais, tarot e trabalhos de amor com a Latifa Sensitiva. Encontre orientação e harmonia em sua vida através da espiritualidade.",
+  keywords: ["Latifa Sensitiva", "Tarot Online", "Amarração Amorosa", "Trabalhos Espirituais", "União de Casais", "Vidente", "Cartomante"],
+  authors: [{ name: "Latifa Sensitiva" }],
+  creator: "Latifa Sensitiva",
+  publisher: "Sales Digital",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    title: "Latifa Sensitiva | Consultas e Trabalhos Espirituais",
+    description: "Abra seus caminhos e conquiste seus sonhos com equilíbrio e harmonia através da espiritualidade.",
+    url: "https://latifasensitiva.top",
+    siteName: "Latifa Sensitiva",
+    locale: "pt_BR",
+    type: "website",
+    images: [
+      {
+        url: "/roda-fortuna.png",
+        width: 1200,
+        height: 630,
+        alt: "Latifa Sensitiva - Roda da Fortuna",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Latifa Sensitiva | Consultas e Trabalhos Espirituais",
+    description: "Consultas espirituais, tarot e trabalhos de amor com a Latifa Sensitiva.",
+    images: ["/roda-fortuna.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  themeColor: "#dc2626",
 };
 
 export default function RootLayout({
@@ -29,8 +72,47 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Latifa Sensitiva",
+    "image": "https://latifasensitiva.top/roda-fortuna.png",
+    "description": "Consultas espirituais, tarot e trabalhos de amor com a Latifa Sensitiva. Encontre orientação e harmonia em sua vida através da espiritualidade.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "São Paulo",
+      "addressRegion": "SP",
+      "addressCountry": "BR"
+    },
+    "url": "https://latifasensitiva.top",
+    "telephone": "+5511971093420",
+    "priceRange": "$$",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "08:00",
+        "closes": "22:00"
+      }
+    ],
+  };
+
   return (
-    <html lang="en">
+    <html lang="pt-BR">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       {/* Google Tag Manager */}
       <Script id="google-tag-manager" strategy="afterInteractive">
         {`
