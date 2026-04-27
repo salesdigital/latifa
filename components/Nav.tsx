@@ -3,6 +3,7 @@
 import Container from "./Container";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import WhatsAppButton from "./WhatsAppButton";
 
 const navItems = [
   {
@@ -66,39 +67,14 @@ const Nav = () => {
     <>
       <div className="bg-green-500">
         <Container>
-          <div className="flex justify-center items-center py-2 text-white">
-            <div className="flex items-center justify-center gap-2">
-              <div className="flex gap-1 items-center">
-
-
-              </div>
-              <a
-                href="https://wa.me/5511971093420"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative inline-flex items-center gap-3 cursor-pointer 
-  bg-gradient-to-r from-green-500 via-emerald-500 to-green-600 
-  text-white px-7 py-4 rounded-xl font-extrabold text-sm tracking-wide
-  shadow-lg shadow-green-500/30
-  hover:scale-105 hover:shadow-xl hover:shadow-green-500/40
-  transition-all duration-300 border border-white/10"
-              >
-                {/* Efeito brilho animado */}
-                <span className="absolute inset-0 rounded-xl bg-white/10 opacity-0 group-hover:opacity-100 blur transition"></span>
-
-                <svg
-                  className="size-5 z-10"
-                  fill="#fff"
-                  viewBox="0 0 308 308"
-                >
-                  <path d="M227.904,176.981c-0.6-0.288-23.054-11.345-27.044-12.781..." />
-                </svg>
-
-                <span className="z-10" style={{ fontFamily: "'Tanpearl', sans-serif" }}>
-                  Fale comigo agora no WhatsApp
-                </span>
-              </a>
-            </div>
+          <div className="flex flex-col items-center justify-center gap-3 py-3 text-white md:flex-row md:gap-6">
+            <p className="text-center text-sm font-semibold tracking-wide">
+              Atendimento imediato • Resposta rápida • Poucos horários hoje
+            </p>
+            <WhatsAppButton
+              className="px-6 py-3 text-xs md:text-sm"
+              label="Falar agora no WhatsApp"
+            />
           </div>
         </Container>
       </div>

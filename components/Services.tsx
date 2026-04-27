@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react';
 import { Heart, Eye, Shield, Coins, Quote } from 'lucide-react';
+import WhatsAppButton from './WhatsAppButton';
 
 const serviceCategories = [
   {
@@ -94,7 +95,7 @@ export default function Services() {
             variants={itemVariants}
             className="text-center mb-16 text-lg text-gray-700 max-w-3xl mx-auto"
           >
-            Ofereço uma ampla gama de serviços espirituais, desde consultas e leituras até trabalhos poderosos para amor, proteção e prosperidade. Cada trabalho é personalizado para atender às suas necessidades específicas.
+            Atendimento focado em dor real: problemas no relacionamento, distanciamento e dúvidas no amor. Cada consulta é personalizada para entender o seu caso com clareza.
           </motion.p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -124,6 +125,19 @@ export default function Services() {
               </motion.div>
             ))}
           </div>
+
+          <motion.div
+            variants={itemVariants}
+            className="mt-14 rounded-2xl border border-red-100 bg-white p-8 text-center shadow-lg"
+          >
+            <p className="mb-2 text-xl font-bold text-red-700 md:text-2xl">
+              Seu caso precisa de resposta rápida?
+            </p>
+            <p className="mb-6 text-gray-700">
+              Atendimento imediato, sigiloso e com orientação espiritual para relacionamentos.
+            </p>
+            <WhatsAppButton label="Falar agora no WhatsApp" />
+          </motion.div>
         </motion.div>
       </div>
     </section>

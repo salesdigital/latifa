@@ -20,9 +20,17 @@ const tanpearl = localFont({
 });
 
 export const metadata: Metadata = {
+  // Cache-buster para forcar refresh dos cards sociais apos deploy.
+  // Altere esse valor quando trocar imagem/copy de compartilhamento.
   metadataBase: new URL('https://latifasensitiva.top'),
+  alternates: {
+    canonical: "https://latifasensitiva.top",
+  },
+  other: {
+    "social:image-version": "2026-04-24-v2",
+  },
   title: "Latifa Sensitiva | Consultas e Trabalhos Espirituais",
-  description: "Consultas espirituais, tarot e trabalhos de amor com a Latifa Sensitiva. Encontre orientação e harmonia em sua vida através da espiritualidade.",
+  description: "Descubra o que está bloqueando sua vida amorosa com atendimento espiritual sigiloso e imediato para relacionamentos.",
   keywords: ["Latifa Sensitiva", "Tarot Online", "Amarração Amorosa", "Trabalhos Espirituais", "União de Casais", "Vidente", "Cartomante"],
   authors: [{ name: "Latifa Sensitiva" }],
   creator: "Latifa Sensitiva",
@@ -34,25 +42,25 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Latifa Sensitiva | Consultas e Trabalhos Espirituais",
-    description: "Abra seus caminhos e conquiste seus sonhos com equilíbrio e harmonia através da espiritualidade.",
+    description: "Seu relacionamento esfriou? Ele(a) se afastou? Receba orientação espiritual sigilosa e imediata.",
     url: "https://latifasensitiva.top",
     siteName: "Latifa Sensitiva",
     locale: "pt_BR",
     type: "website",
     images: [
       {
-        url: "/roda-fortuna.png",
+        url: "/taro.jpeg?v=2026-04-24-v2",
         width: 1200,
         height: 630,
-        alt: "Latifa Sensitiva - Roda da Fortuna",
+        alt: "Consulta de tarot com foco em relacionamento",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Latifa Sensitiva | Consultas e Trabalhos Espirituais",
-    description: "Consultas espirituais, tarot e trabalhos de amor com a Latifa Sensitiva.",
-    images: ["/roda-fortuna.png"],
+    description: "Atendimento espiritual sigiloso e imediato para relacionamentos.",
+    images: ["/taro.jpeg?v=2026-04-24-v2"],
   },
   robots: {
     index: true,
@@ -80,8 +88,8 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "Latifa Sensitiva",
-    "image": "https://latifasensitiva.top/roda-fortuna.png",
-    "description": "Consultas espirituais, tarot e trabalhos de amor com a Latifa Sensitiva. Encontre orientação e harmonia em sua vida através da espiritualidade.",
+    "image": "https://latifasensitiva.top/taro.jpeg?v=2026-04-24-v2",
+    "description": "Descubra o que está bloqueando sua vida amorosa com atendimento espiritual sigiloso e imediato para relacionamentos.",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "São Paulo",
@@ -130,7 +138,7 @@ export default function RootLayout({
       
       {/* Google tag (gtag.js) */}
       <Script 
-        src="https://www.googletagmanager.com/gtag/js?id=AW-16937601495" 
+        src="https://www.googletagmanager.com/gtag/js?id=AW-18097045279" 
         strategy="afterInteractive"
       />
       <Script id="google-analytics" strategy="afterInteractive">
@@ -138,7 +146,7 @@ export default function RootLayout({
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'AW-16937601495');
+          gtag('config', 'AW-18097045279');
         `}
       </Script>
       

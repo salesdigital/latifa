@@ -8,6 +8,7 @@ import Zodiac from "@/components/Zodiac";
 import Gallery from "@/components/Gallery";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <Gallery />
       <Testimonials />
       <Footer />
+      <FloatingWhatsApp />
     </main>
   );
 }

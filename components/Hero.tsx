@@ -1,81 +1,78 @@
-"use client"
+"use client";
+
 import Image from "next/image";
-import Container from "./Container";
 import { motion } from "motion/react";
+import Container from "./Container";
+import WhatsAppButton from "./WhatsAppButton";
+
+const HERO_PAIN_POINTS = [
+  "Seu relacionamento esfriou?",
+  "Ele(a) se afastou?",
+  "Sente que algo está errado?",
+];
 
 const Hero = () => {
   return (
-    <div className="bg-gradient-to-br from-red-50 overflow-hidden via-orange-50 to-white bg-cover bg-center min-h-[calc(100vh-100px)] flex items-center">
-      <Container className="flex flex-col mt-10 md:mt-0 md:flex-row justify-between items-center relative">
-        <div className="max-w-3xl z-10">
-          <h1 className="text-red-600 text-4xl md:text-6xl font-bold mb-4 font-tanpearl">
+    <section className="min-h-[calc(100vh-100px)] overflow-hidden bg-gradient-to-br from-red-50 via-orange-50 to-white">
+      <Container className="flex flex-col items-center gap-10 py-12 md:flex-row md:gap-14 md:py-20">
+        <div className="max-w-2xl">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-red-500">
             Latifa Sensitiva
-          </h1>
-          <div className="h-1 w-24 bg-gradient-to-r from-red-600 to-orange-400 mb-6"></div>
-          <p className="text-red-500/90 text-xl mb-8">
-            Amarrações amorosas, simpatias, união de casais, adoçamentos e tarot
-            online
           </p>
-          <div className="prose prose-lg text-gray-700 mb-8">
-            <p>
-              Abra seus caminhos e conquiste seus sonhos com equilíbrio e harmonia.
-            </p>
-            <p>
-              Com minha força espiritual, posso ajudá-lo(a) a remover obstáculos e trazer novas oportunidades para sua vida. A espiritualidade é um caminho poderoso para alcançar o que deseja.
-            </p>
-            <p>
-              Fortaleça seu Anjo da Guarda e sinta sua proteção mais perto de você.
-            </p>
-            <p>
-              Se seu relacionamento esfriou ou enfrenta desafios, há soluções! Meus trabalhos espirituais podem reacender a paixão e reconquistar quem você ama.
-            </p>
-            <p>
-              Quer salvar seu casamento ou trazer de volta um grande amor? Com confiança e direcionamento espiritual, é possível restaurar a harmonia e a conexão verdadeira.
-            </p>
-            <p>
-              Seu destino está em suas mãos. Dê o primeiro passo para a transformação e permita-me guiá-lo(a) nesse caminho!
-            </p>
-          </div>
-          <a
-            href="https://wa.me/5511971093420"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative inline-flex items-center gap-3 cursor-pointer 
-  bg-gradient-to-r from-green-500 via-emerald-500 to-green-600 
-  text-white px-7 py-4 rounded-xl font-extrabold text-sm tracking-wide
-  shadow-lg shadow-green-500/30
-  hover:scale-105 hover:shadow-xl hover:shadow-green-500/40
-  transition-all duration-300 border border-white/10"
-          >
-            {/* Efeito brilho animado */}
-            <span className="absolute inset-0 rounded-xl bg-white/10 opacity-0 group-hover:opacity-100 blur transition"></span>
+          <h1 className="mb-5 text-4xl font-bold leading-tight text-red-700 md:text-6xl font-tanpearl">
+            Descubra o que está bloqueando sua vida amorosa
+          </h1>
+          <p className="mb-7 text-lg text-red-600/95 md:text-2xl">
+            Atendimento espiritual sigiloso e imediato para relacionamentos.
+          </p>
 
-            <svg
-              className="size-5 z-10"
-              fill="#fff"
-              viewBox="0 0 308 308"
-            >
-              <path d="M227.904,176.981c-0.6-0.288-23.054-11.345-27.044-12.781..." />
-            </svg>
+          <ul className="mb-6 space-y-2 text-base font-medium text-gray-700 md:text-lg">
+            {HERO_PAIN_POINTS.map((item) => (
+              <li key={item}>- {item}</li>
+            ))}
+          </ul>
 
-            <span className="z-10" style={{ fontFamily: "'Tanpearl', sans-serif" }}>
-              Fale comigo agora no WhatsApp
+          <p className="mb-8 text-base text-gray-700 md:text-lg">
+            Descubra agora com uma consulta espiritual.
+          </p>
+
+          <WhatsAppButton
+            className="w-full px-8 py-5 text-base md:w-auto md:text-lg"
+            label="Falar agora no WhatsApp"
+          />
+
+          <div className="mt-4 flex flex-wrap gap-3">
+            <span className="rounded-full border border-green-200 bg-green-50 px-4 py-2 text-sm font-semibold text-green-700">
+              Atendimento imediato
             </span>
-          </a>
+            <span className="rounded-full border border-green-200 bg-green-50 px-4 py-2 text-sm font-semibold text-green-700">
+              100% sigiloso
+            </span>
+            <span className="rounded-full border border-orange-200 bg-orange-50 px-4 py-2 text-sm font-semibold text-orange-700">
+              Poucos horários hoje
+            </span>
+          </div>
         </div>
+
         <motion.div
-          className="relative w-[500px] h-[500px] md:w-[700px] md:h-[700px] md:left-60 mt-8 md:mt-0 "
-          animate={{ rotate: 360 }}
-          transition={{
-            repeat: Infinity,
-            duration: 20,
-            ease: "linear"
-          }}
+          className="relative w-full max-w-[520px]"
+          animate={{ y: [0, -10, 0] }}
+          transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
         >
-          <Image priority src="/roda-fortuna.png" alt="Roda da Fortuna - Consulta de Tarot e Previsões Espirituais com Latifa Sensitiva" className="md:w-[700px] md:h-[700px]" width={700} height={600} />
+          <div className="absolute -left-6 -top-6 h-32 w-32 rounded-full bg-orange-300/25 blur-3xl" />
+          <div className="absolute -bottom-8 -right-8 h-40 w-40 rounded-full bg-red-300/25 blur-3xl" />
+          <Image
+            priority
+            src="/taro.jpeg"
+            alt="Mesa de tarot para consulta espiritual focada em relacionamento"
+            width={520}
+            height={640}
+            className="relative h-auto w-full rounded-2xl border-4 border-white object-cover shadow-2xl"
+            sizes="(max-width: 768px) 100vw, 520px"
+          />
         </motion.div>
       </Container>
-    </div>
+    </section>
   );
 };
 

@@ -66,14 +66,14 @@ export default function Testimonials() {
             variants={itemVariants}
             className="text-4xl md:text-5xl font-tanpearl text-center mb-16 text-red-600"
           >
-            Depoimentos
+            Depoimentos Reais
           </motion.h2>
 
           <motion.p 
             variants={itemVariants}
             className="text-center mb-16 text-lg text-gray-700 max-w-3xl mx-auto"
           >
-            Veja o que nossos clientes têm a dizer sobre nossas consultas e trabalhos espirituais
+            Mais de 2.000 atendimentos realizados com foco em relacionamento, reconciliação e clareza amorosa.
           </motion.p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
