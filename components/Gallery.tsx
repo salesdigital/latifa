@@ -3,108 +3,75 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
-import { X } from 'lucide-react';
+import { X, Expand } from 'lucide-react';
+import Container from './Container';
 
 const images = [
-  {
-    src: '/galeria/cartomante-1.jpg',
-    alt: 'Cartomante realizando leitura espiritual',
-  },
-  {
-    src: '/galeria/cartomante-2.jpg',
-    alt: 'Consulta de tarô e cartas',
-  },
-  {
-    src: '/galeria/cartomante-3.jpg',
-    alt: 'Ritual espiritual e proteção',
-  },
-  {
-    src: '/galeria/cartomante-4.webp',
-    alt: 'Trabalho de amor e união',
-  },
-  {
-    src: '/galeria/cartomante-5.jpg',
-    alt: 'Trabalho de amor e união',
-  },
-  {
-    src: '/galeria/cartomante-6.jpg',
-    alt: 'Abeçoando pessoas na cachoeira',
-  },
+  { src: '/galeria/cartomante-1.jpg', alt: 'Ritual espiritual à beira-mar — oferenda a Iemanjá' },
+  { src: '/galeria/cartomante-2.jpg', alt: 'Consulta de tarô e leitura de cartas' },
+  { src: '/galeria/cartomante-3.jpg', alt: 'Ritual de proteção e limpeza espiritual' },
+  { src: '/galeria/cartomante-4.webp', alt: 'Trabalho de amor e união espiritual' },
+  { src: '/galeria/cartomante-5.jpg', alt: 'Ritual de prosperidade e abundância' },
+  { src: '/galeria/cartomante-6.jpg', alt: 'Latifa em conexão espiritual na natureza' },
 ];
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.5
-    }
-  }
-};
 
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   return (
-    <section id="galeria" className="py-20 bg-gradient-to-b from-orange-50 to-white">
-      <div className="container mx-auto px-4">
+    <section id="galeria" className="section-dark relative py-20 md:py-28">
+      <Container>
         <motion.div
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          variants={containerVariants}
-          className="max-w-6xl mx-auto "
+          transition={{ duration: 0.8 }}
+          className="relative z-10 mb-14 text-center"
         >
-          <motion.h2 
-            variants={itemVariants}
-            className="text-4xl md:text-5xl font-tanpearl text-center mb-16 text-red-600"
-          >
-            Galeria
-          </motion.h2>
+          <p className="mb-3 font-[family-name:var(--font-dm-sans)] text-xs font-semibold uppercase tracking-[0.3em] text-[var(--gold)]">
+            ✦ Registos de fé ✦
+          </p>
+          <h2 className="font-tanpearl text-3xl font-bold text-[var(--text-primary)] md:text-5xl">
+            Conexões Espirituais
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl font-[family-name:var(--font-cormorant)] text-lg text-[var(--text-secondary)]">
+            Momentos sagrados capturados em imagem — a essência da espiritualidade e do poder místico.
+          </p>
+        </motion.div>
 
-          <motion.p 
-            variants={itemVariants}
-            className="text-center mb-16 text-lg text-gray-700 max-w-3xl mx-auto"
-          >
-            Conheça um pouco do meu trabalho através dessas imagens que capturam a essência da espiritualidade e do poder místico.
-          </motion.p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {images.map((image) => (
-              <motion.div
-                key={image.src}
-                variants={itemVariants}
-                className="relative aspect-square overflow-hidden rounded-lg shadow-lg group cursor-pointer"
-                onClick={() => setSelectedImage(image.src)}
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  className="object-cover transform transition-transform duration-500 group-hover:scale-110"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <p className="text-white text-center px-4 font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+        <div className="relative z-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {images.map((image, index) => (
+            <motion.div
+              key={image.src}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="group relative aspect-square cursor-pointer overflow-hidden rounded-2xl border border-[var(--glass-border)]"
+              onClick={() => setSelectedImage(image.src)}
+            >
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
+              {/* Hover overlay */}
+              <div className="absolute inset-0 flex items-center justify-center bg-[var(--bg-void)]/60 opacity-0 backdrop-blur-sm transition-all duration-500 group-hover:opacity-100">
+                <div className="flex flex-col items-center gap-2">
+                  <Expand className="h-6 w-6 text-[var(--gold)]" />
+                  <p className="max-w-[200px] text-center font-[family-name:var(--font-dm-sans)] text-sm text-[var(--text-primary)]">
                     {image.alt}
                   </p>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </div>
+              </div>
+              {/* Bottom gradient */}
+              <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[var(--bg-void)]/60 to-transparent" />
+            </motion.div>
+          ))}
+        </div>
+      </Container>
 
       {/* Lightbox */}
       <AnimatePresence>
@@ -113,11 +80,11 @@ export default function Gallery() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-[var(--bg-void)]/95 p-4 backdrop-blur-xl"
             onClick={() => setSelectedImage(null)}
           >
             <button
-              className="absolute top-4 right-4 text-white hover:text-orange-400 transition-colors"
+              className="absolute right-4 top-4 text-[var(--text-secondary)] transition-colors hover:text-[var(--gold)]"
               onClick={() => setSelectedImage(null)}
             >
               <X size={32} />
@@ -126,7 +93,8 @@ export default function Gallery() {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="relative w-full max-w-4xl aspect-[4/3]"
+              className="relative w-full max-w-4xl overflow-hidden rounded-2xl border border-[var(--glass-border)]"
+              style={{ aspectRatio: "4/3" }}
               onClick={(e) => e.stopPropagation()}
             >
               <Image
@@ -142,4 +110,4 @@ export default function Gallery() {
       </AnimatePresence>
     </section>
   );
-} 
+}

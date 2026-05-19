@@ -1,78 +1,81 @@
 "use client";
-import { motion } from "motion/react";
+import { motion, useInView } from "motion/react";
+import { useRef, useEffect, useState } from "react";
 import Container from "./Container";
 
-const statsVariants = {
-  hidden: { opacity: 0 },
-  visible: (i: number) => ({
-    opacity: 1,
-    transition: {
-      delay: i * 0.1,
-      duration: 0.8,
-      ease: "easeOut"
-    }
-  })
-};
+function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+    let frame: number;
+    const duration = 2000;
+    const start = performance.now();
+    const step = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+      setCount(Math.floor(eased * target));
+      if (progress < 1) frame = requestAnimationFrame(step);
+    };
+    frame = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(frame);
+  }, [isInView, target]);
+
+  return <span ref={ref}>{count > 0 ? `+${count.toLocaleString('pt-BR')}` : target === 0 ? "Hoje" : "0"}{suffix}</span>;
+}
 
 const Stats = () => {
   const stats = [
-    { id: 1, value: "+25", name: "anos de experiência espiritual" },
-    { id: 2, value: "+2000", name: "atendimentos realizados" },
-    { id: 3, value: "+1500", name: "casos amorosos orientados" },
-    { id: 4, value: "Hoje", name: "atendimento imediato e sigiloso" },
+    { id: 1, value: 25, label: "anos de experiência espiritual" },
+    { id: 2, value: 50000, label: "atendimentos realizados" },
+    { id: 3, value: 15000, label: "trabalhos espirituais realizados" },
+    { id: 4, value: 8000, label: "casos amorosos orientados" },
   ];
 
   return (
-    <section className="flex w-full items-center bg-gradient-to-b from-white via-red-50/40 to-white py-14 md:py-20">
-      <div className="w-full">
-        <Container>
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="mb-12 text-center"
-          >
-            <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-red-500">
-              Histórias Reais
-            </p>
-            <h2 className="text-3xl font-bold text-red-700 md:text-4xl font-tanpearl">
-              Resultados Que Transformam Vidas!
-            </h2>
-          </motion.div>
+    <section className="section-deep relative py-16 md:py-24">
+      <Container>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="mb-14 text-center"
+        >
+          <p className="mb-3 font-[family-name:var(--font-dm-sans)] text-xs font-semibold uppercase tracking-[0.3em] text-[var(--gold)]">
+            ✦ Resultados reais ✦
+          </p>
+          <h2 className="font-tanpearl text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
+            Vidas Transformadas pela Luz
+          </h2>
+        </motion.div>
 
-          <motion.dl
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            className="grid grid-cols-1 gap-5 text-center sm:grid-cols-2 lg:grid-cols-4"
-          >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.id}
-                variants={statsVariants}
-                custom={index}
-                whileHover={{ y: -6 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-                className="group rounded-2xl border border-red-100/80 bg-white/90 p-8 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-red-200 hover:shadow-xl hover:shadow-red-100/60"
-              >
-                <motion.dd
-                  initial={{ scale: 0.85, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.08 }}
-                  className="mb-3 bg-gradient-to-r from-red-700 via-red-600 to-orange-500 bg-clip-text text-4xl font-extrabold tracking-tight text-transparent sm:text-5xl"
-                >
-                  {stat.value}
-                </motion.dd>
-                <dt className="mx-auto max-w-[18ch] text-sm font-medium uppercase tracking-wider text-gray-600 md:text-base">
-                  {stat.name}
-                </dt>
-                <div className="mx-auto mt-5 h-1 w-12 rounded-full bg-gradient-to-r from-red-500 to-orange-400 opacity-70 transition-opacity group-hover:opacity-100" />
-              </motion.div>
-            ))}
-          </motion.dl>
-        </Container>
-      </div>
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {stats.map((stat, index) => (
+            <motion.div
+              key={stat.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              whileHover={{ y: -6 }}
+              className="glass-card group flex flex-col items-center justify-center p-6 text-center md:p-8"
+            >
+              <div className="mb-4 flex items-center justify-center overflow-visible font-tanpearl text-3xl font-bold leading-[1.8] py-4 sm:text-4xl lg:text-5xl">
+                <span className="gold-text inline-block overflow-visible py-1">
+                  <AnimatedCounter target={stat.value} />
+                </span>
+              </div>
+              <p className="mx-auto max-w-[18ch] font-[family-name:var(--font-dm-sans)] text-sm font-medium uppercase tracking-wider text-[var(--text-secondary)]">
+                {stat.label}
+              </p>
+              <div className="mx-auto mt-5 h-px w-12 bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent opacity-40 transition-opacity group-hover:opacity-100" />
+            </motion.div>
+          ))}
+        </div>
+      </Container>
     </section>
   );
 };

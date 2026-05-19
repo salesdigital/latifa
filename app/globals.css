@@ -5,56 +5,434 @@
   --font-mono: var(--font-geist-mono);
   --font-signora: var(--font-signora);
   --font-tanpearl: var(--font-tanpearl);
+  --font-cormorant: var(--font-cormorant);
 }
+
+/* ═══════════════════════════════════════════════
+   MYSTIC ASTERICK — Design System Tokens
+   ═══════════════════════════════════════════════ */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  
-  /* Primary Colors */
-  --primary-red: #DC2626;
-  --primary-red-light: #EF4444;
-  --primary-red-dark: #B91C1C;
-  
-  /* Secondary Colors */
-  --primary-orange: #F97316;
-  --primary-orange-light: #FB923C;
-  --primary-orange-dark: #EA580C;
-  
-  /* Accent Colors */
-  --accent-warm: #FFFBEB;
-  --accent-cool: #FEF2F2;
+  /* ── Backgrounds ── */
+  --bg-void:        #0B0A1A;
+  --bg-deep:        #110F2E;
+  --bg-surface:     #1A1740;
+  --bg-surface-alt: #1E1B4B;
+  --bg-elevated:    #252252;
+
+  /* ── Crimson (Brand Red — evolved) ── */
+  --crimson:        #8B1A1A;
+  --crimson-glow:   #C41E3A;
+  --crimson-light:  #E04058;
+  --crimson-soft:   rgba(196, 30, 58, 0.18);
+
+  /* ── Gold (Sacred accent) ── */
+  --gold:           #C9A96E;
+  --gold-bright:    #E8D5A3;
+  --gold-dim:       #8B7744;
+  --gold-glow:      rgba(201, 169, 110, 0.25);
+  --gold-glow-strong: rgba(201, 169, 110, 0.50);
+
+  /* ── Cosmic ── */
+  --cosmic-purple:  #2D1B69;
+  --cosmic-indigo:  #1E1452;
+  --cosmic-violet:  #4C1D95;
+
+  /* ── Text ── */
+  --text-primary:   #F5F0E8;
+  --text-secondary: #A89B8C;
+  --text-muted:     #6B5F54;
+  --text-accent:    #C9A96E;
+
+  /* ── Misc ── */
+  --glass-border:   rgba(201, 169, 110, 0.12);
+  --glass-bg:       rgba(26, 23, 64, 0.60);
+  --glass-bg-hover: rgba(26, 23, 64, 0.80);
+  --overlay:        rgba(11, 10, 26, 0.85);
+
+  /* Legacy compat */
+  --background:     #0B0A1A;
+  --foreground:     #F5F0E8;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ═══════════════════════════════════════════════
+   BASE
+   ═══════════════════════════════════════════════ */
+
+html {
+  scroll-behavior: smooth;
 }
+
+body {
+  color: var(--text-primary);
+  background: var(--bg-void);
+  font-family: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--crimson-glow);
+  color: var(--gold-bright);
+}
+
+/* ── Custom scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-void);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold-dim);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
+
+/* ═══════════════════════════════════════════════
+   FONTS
+   ═══════════════════════════════════════════════ */
 
 @font-face {
   font-family: "LaSignora";
   src: url("/fonts/LaSignora.ttf") format("truetype");
   font-weight: normal;
-  font-style: normal; 
+  font-style: normal;
+  font-display: swap;
 }
 
-/* @font-face {
-  font-family: "Tanpearl";
-  src: url("/fonts/Tanpearl.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal; 
-} */
+/* ═══════════════════════════════════════════════
+   UTILITY CLASSES — Glassmorphism & Effects
+   ═══════════════════════════════════════════════ */
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.glass-card:hover {
+  background: var(--glass-bg-hover);
+  border-color: rgba(201, 169, 110, 0.25);
+  box-shadow: 0 8px 32px rgba(201, 169, 110, 0.08);
+}
 
-@theme {
-  --font-signora: var(--font-signora);
-  --font-tanpearl: var(--font-tanpearl);
+.glass-card-strong {
+  background: rgba(26, 23, 64, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(201, 169, 110, 0.18);
+  border-radius: 20px;
+}
+
+.gold-border {
+  border: 1px solid var(--glass-border);
+  position: relative;
+}
+
+.gold-border::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--gold-glow), transparent 50%, var(--gold-glow));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.gold-border:hover::after {
+  opacity: 1;
+}
+
+.mystic-glow {
+  box-shadow:
+    0 0 15px rgba(201, 169, 110, 0.10),
+    0 0 40px rgba(201, 169, 110, 0.05);
+}
+
+.mystic-glow-strong {
+  box-shadow:
+    0 0 20px rgba(201, 169, 110, 0.15),
+    0 0 60px rgba(201, 169, 110, 0.08),
+    0 0 100px rgba(196, 30, 58, 0.05);
+}
+
+.gold-text {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 50%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.crimson-text {
+  background: linear-gradient(135deg, var(--crimson-glow) 0%, var(--crimson-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Divider ornament ── */
+.mystic-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  opacity: 0.5;
+}
+
+.mystic-divider::before,
+.mystic-divider::after {
+  content: '';
+  height: 1px;
+  width: 60px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* ── Section backgrounds ── */
+.section-dark {
+  background: linear-gradient(180deg, var(--bg-void) 0%, var(--bg-deep) 100%);
+}
+
+.section-deep {
+  background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-void) 100%);
+}
+
+.section-cosmic {
+  background: linear-gradient(180deg, var(--cosmic-indigo) 0%, var(--bg-deep) 50%, var(--bg-void) 100%);
+}
+
+/* ── Star field background ── */
+.star-field {
+  position: relative;
+  overflow: hidden;
+}
+
+.star-field::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(201, 169, 110, 0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 10%, rgba(201, 169, 110, 0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 70%, rgba(245, 240, 232, 0.25) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 40%, rgba(201, 169, 110, 0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 80%, rgba(245, 240, 232, 0.2) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 45% 55%, rgba(201, 169, 110, 0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 20% 90%, rgba(245, 240, 232, 0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 25%, rgba(201, 169, 110, 0.25) 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 5%, rgba(245, 240, 232, 0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 15% 45%, rgba(201, 169, 110, 0.3) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 85% 60%, rgba(201, 169, 110, 0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 40% 85%, rgba(245, 240, 232, 0.2) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+  animation: twinkle 8s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  0%   { opacity: 0.6; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+/* ═══════════════════════════════════════════════
+   GLOBAL ANIMATIONS
+   ═══════════════════════════════════════════════ */
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%      { opacity: 0.8; transform: scale(1.05); }
+}
+
+@keyframes goldPulse {
+  0%, 100% { box-shadow: 0 0 15px rgba(201, 169, 110, 0.15); }
+  50%      { box-shadow: 0 0 30px rgba(201, 169, 110, 0.30), 0 0 60px rgba(201, 169, 110, 0.10); }
+}
+
+@keyframes gentleRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ═══════════════════════════════════════════════
+   RODA DA FORTUNA — Spinning Zodiac Wheel
+   (Preserved + Enhanced for dark theme)
+   ═══════════════════════════════════════════════ */
+
+.roda-wrapper {
+  position: relative;
+  width: 340px;
+  height: 340px;
+  flex-shrink: 0;
+  margin: 0 auto;
+}
+
+.roda-aura {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.roda-aura--1 {
+  inset: -40px;
+  background: radial-gradient(circle, rgba(201, 169, 110, 0.18) 0%, transparent 70%);
+  filter: blur(40px);
+  animation: auraPulse 5s ease-in-out infinite;
+}
+
+.roda-aura--2 {
+  inset: -30px;
+  background: radial-gradient(circle, rgba(196, 30, 58, 0.12) 0%, transparent 65%);
+  filter: blur(50px);
+  animation: auraPulse 7s ease-in-out infinite 1.5s;
+}
+
+.roda-aura--3 {
+  inset: -55px;
+  background: radial-gradient(circle, rgba(76, 29, 149, 0.12) 0%, transparent 60%);
+  filter: blur(60px);
+  animation: auraPulse 9s ease-in-out infinite 3s;
+}
+
+@keyframes auraPulse {
+  0%, 100% { transform: scale(1);    opacity: 1; }
+  50%      { transform: scale(1.18); opacity: 0.5; }
+}
+
+.roda-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.roda-image__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: rodaSpin 40s linear infinite;
+  filter:
+    drop-shadow(0 0 20px rgba(201, 169, 110, 0.25))
+    drop-shadow(0 0 50px rgba(196, 30, 58, 0.12));
+  transition: filter 0.4s ease;
+}
+
+.roda-wrapper:hover .roda-image__img {
+  filter:
+    drop-shadow(0 0 28px rgba(201, 169, 110, 0.40))
+    drop-shadow(0 0 60px rgba(196, 30, 58, 0.20));
+  animation-duration: 20s;
+}
+
+@keyframes rodaSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.roda-center-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 169, 110, 0.20) 0%, transparent 70%);
+  z-index: 3;
+  pointer-events: none;
+  animation: centerGlow 3s ease-in-out infinite;
+}
+
+@keyframes centerGlow {
+  0%, 100% { transform: translate(-50%, -50%) scale(1);   opacity: 0.8; }
+  50%      { transform: translate(-50%, -50%) scale(1.8); opacity: 0.2; }
+}
+
+.roda-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.roda-spark {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--gold-bright);
+  box-shadow: 0 0 6px 2px rgba(201, 169, 110, 0.5),
+              0 0 14px 4px rgba(201, 169, 110, 0.2);
+  top: 50%;
+  left: 50%;
+  animation: sparkOrbit 10s linear infinite;
+}
+
+@keyframes sparkOrbit {
+  0%   { transform: rotate(0deg)   translateX(160px) rotate(0deg);   opacity: 0.9; }
+  25%  { opacity: 0.3; }
+  50%  { transform: rotate(180deg) translateX(160px) rotate(-180deg); opacity: 0.9; }
+  75%  { opacity: 0.3; }
+  100% { transform: rotate(360deg) translateX(160px) rotate(-360deg); opacity: 0.9; }
+}
+
+/* Responsive Roda */
+@media (max-width: 420px) {
+  .roda-wrapper { width: 260px; height: 260px; }
+  .roda-center-glow { width: 44px; height: 44px; }
+  .roda-spark { animation-name: sparkOrbitSm; }
+  @keyframes sparkOrbitSm {
+    0%   { transform: rotate(0deg)   translateX(120px) rotate(0deg);   opacity: 0.9; }
+    50%  { transform: rotate(180deg) translateX(120px) rotate(-180deg); opacity: 0.9; }
+    100% { transform: rotate(360deg) translateX(120px) rotate(-360deg); opacity: 0.9; }
+  }
+}
+@media (min-width: 768px) {
+  .roda-wrapper { width: 400px; height: 400px; }
+  .roda-center-glow { width: 70px; height: 70px; }
+  .roda-spark { animation-name: sparkOrbitMd; }
+  @keyframes sparkOrbitMd {
+    0%   { transform: rotate(0deg)   translateX(185px) rotate(0deg);   opacity: 0.9; }
+    50%  { transform: rotate(180deg) translateX(185px) rotate(-180deg); opacity: 0.9; }
+    100% { transform: rotate(360deg) translateX(185px) rotate(-360deg); opacity: 0.9; }
+  }
+}
+@media (min-width: 1024px) {
+  .roda-wrapper { width: 480px; height: 480px; }
+  .roda-center-glow { width: 80px; height: 80px; }
+  .roda-spark { animation-name: sparkOrbitLg; }
+  @keyframes sparkOrbitLg {
+    0%   { transform: rotate(0deg)   translateX(220px) rotate(0deg);   opacity: 0.9; }
+    50%  { transform: rotate(180deg) translateX(220px) rotate(-180deg); opacity: 0.9; }
+    100% { transform: rotate(360deg) translateX(220px) rotate(-360deg); opacity: 0.9; }
+  }
 }

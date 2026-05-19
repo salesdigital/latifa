@@ -4,122 +4,88 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
 import { Star, X } from 'lucide-react';
+import Container from './Container';
 
 const testimonialImages = [
-  {
-    src: '/testemunhas/testemunho-1.jpg',
-    alt: 'Depoimento de cliente satisfeito',
-  },
-  {
-    src: '/testemunhas/testemunho-2.jpg',
-    alt: 'Depoimento de cliente satisfeito',
-  },
-  {
-    src: '/testemunhas/testemunho-3.jpg',
-    alt: 'Depoimento de cliente satisfeito',
-  },
-  {
-    src: '/testemunhas/testemunho-4.jpg',
-    alt: 'Depoimento de cliente satisfeito',
-  },
-  {
-    src: '/testemunhas/testemunho-5.jpg',
-    alt: 'Depoimento de cliente satisfeito',
-  },
+  { src: '/testemunhas/testemunho-1.jpg', alt: 'Depoimento real — reconexão amorosa' },
+  { src: '/testemunhas/testemunho-2.jpg', alt: 'Depoimento real — proteção espiritual' },
+  { src: '/testemunhas/testemunho-3.jpg', alt: 'Depoimento real — clareza e orientação' },
+  { src: '/testemunhas/testemunho-4.jpg', alt: 'Depoimento real — transformação de vida' },
+  { src: '/testemunhas/testemunho-5.jpg', alt: 'Depoimento real — harmonia no relacionamento' },
 ];
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.5
-    }
-  }
-};
 
 export default function Testimonials() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   return (
-    <section id="depoimentos" className="py-20 bg-gradient-to-b from-red-50 via-white to-orange-50">
-      <div className="container mx-auto px-4">
+    <section id="depoimentos" className="section-cosmic star-field relative py-20 md:py-28">
+      <Container>
         <motion.div
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          variants={containerVariants}
-          className="max-w-6xl mx-auto"
+          transition={{ duration: 0.8 }}
+          className="relative z-10 mb-14 text-center"
         >
-          <motion.h2 
-            variants={itemVariants}
-            className="text-4xl md:text-5xl font-tanpearl text-center mb-16 text-red-600"
-          >
-            Depoimentos Reais
-          </motion.h2>
-
-          <motion.p 
-            variants={itemVariants}
-            className="text-center mb-16 text-lg text-gray-700 max-w-3xl mx-auto"
-          >
-            Mais de 2.000 atendimentos realizados com foco em relacionamento, reconciliação e clareza amorosa.
-          </motion.p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {testimonialImages.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="bg-white rounded-lg p-4 shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer"
-                onClick={() => setSelectedImage(testimonial.src)}
-              >
-                <div className="relative aspect-[3/4] overflow-hidden rounded-md mb-3">
-                  <Image
-                    src={testimonial.src}
-                    alt={testimonial.alt}
-                    fill
-                    className="object-cover transform transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  />
-                </div>
-                <div className="flex gap-1 justify-center">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-4 h-4 text-orange-400 fill-orange-400"
-                      strokeWidth={1.5}
-                    />
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <p className="mb-3 font-[family-name:var(--font-dm-sans)] text-xs font-semibold uppercase tracking-[0.3em] text-[var(--gold)]">
+            ✦ Testemunhos reais ✦
+          </p>
+          <h2 className="font-tanpearl text-3xl font-bold text-[var(--text-primary)] md:text-5xl">
+            Vozes que Encontraram o Caminho
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl font-[family-name:var(--font-cormorant)] text-lg text-[var(--text-secondary)]">
+            Mais de 50.000 atendimentos realizados com foco em reconexão, clareza amorosa e
+            transformação espiritual.
+          </p>
         </motion.div>
-      </div>
 
-      {/* Lightbox for viewing testimonials */}
+        <div className="relative z-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {testimonialImages.map((testimonial, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="glass-card group cursor-pointer overflow-hidden p-3"
+              onClick={() => setSelectedImage(testimonial.src)}
+            >
+              <div className="relative aspect-[3/4] overflow-hidden rounded-xl">
+                <Image
+                  src={testimonial.src}
+                  alt={testimonial.alt}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-void)]/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+              </div>
+              <div className="mt-3 flex justify-center gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className="h-3.5 w-3.5 fill-[var(--gold)] text-[var(--gold)]"
+                    strokeWidth={1}
+                  />
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </Container>
+
+      {/* Lightbox */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-[var(--bg-void)]/95 p-4 backdrop-blur-xl"
             onClick={() => setSelectedImage(null)}
           >
             <button
-              className="absolute top-4 right-4 text-white hover:text-orange-400 transition-colors"
+              className="absolute right-4 top-4 text-[var(--text-secondary)] transition-colors hover:text-[var(--gold)]"
               onClick={() => setSelectedImage(null)}
             >
               <X size={32} />
@@ -136,7 +102,7 @@ export default function Testimonials() {
                 alt="Depoimento ampliado"
                 width={800}
                 height={1000}
-                className="object-contain mx-auto"
+                className="mx-auto rounded-2xl border border-[var(--glass-border)] object-contain"
               />
             </motion.div>
           </motion.div>

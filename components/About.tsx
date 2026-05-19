@@ -1,40 +1,81 @@
 "use client";
 import Image from "next/image";
+import { motion } from "motion/react";
 import Container from "./Container";
 
 const About = () => {
   return (
-    <section id="sobre" className="bg-gradient-to-br from-red-800 via-red-600 to-red-500 bg-cover bg-center md:min-h-[calc(100vh-100px)] flex items-center py-12 md:py-0">
+    <section id="sobre" className="section-dark star-field relative py-20 md:py-28 lg:py-32">
       <Container>
-        <div className="flex flex-col items-center justify-center pt-10">
-          <h2 className="text-2xl md:text-4xl font-bold text-white font-tanpearl text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="relative z-10 mb-14 text-center"
+        >
+          <p className="mb-3 font-[family-name:var(--font-dm-sans)] text-xs font-semibold uppercase tracking-[0.3em] text-[var(--gold)]">
+            ✦ Quem sou eu ✦
+          </p>
+          <h2 className="font-tanpearl text-3xl font-bold text-[var(--text-primary)] md:text-5xl">
             Latifa Sensitiva
           </h2>
-          <p className="text-white text-sm md:text-base text-center mt-2">
-            Sensitiva, Vidente, Espiritualista, Taróloga
+          <p className="mt-2 font-signora text-base text-[var(--text-secondary)] md:text-lg">
+            Sensitiva • Vidente • Espiritualista • Taróloga
           </p>
-          <hr className="w-32 md:w-24 h-1 bg-gradient-to-r from-orange-400 mt-4 md:mt-2 to-orange-300 mb-8 md:mb-6" />
-        </div>
-        <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-8 md:gap-12">
-          <div className="flex flex-col items-center justify-center px-4 md:px-0">
-            <p className="text-white text-base md:text-lg text-justify md:max-w-3xl mx-auto">
-            Meu nome é Latifa e, desde criança, possuo o dom da vidência. Há 25 anos, dedico minha vida a ajudar pessoas através da espiritualidade, revelando caminhos, orientando decisões e trazendo soluções para questões amorosas e espirituais.
+          <div className="mystic-divider mx-auto mt-6">
+            <span className="text-[var(--gold)]">☽</span>
+          </div>
+        </motion.div>
 
-Meu trabalho é baseado na verdade e no respeito ao destino de cada um. Antes de qualquer ritual ou trabalho espiritual, faço previsões detalhadas para entender a situação e garantir o melhor resultado.
-
-Com conhecimento, prática e forte conexão espiritual, ofereço suporte completo para quem busca clareza, amor e transformação.
+        <div className="relative z-10 flex flex-col items-center gap-12 md:flex-row md:items-start md:gap-16 lg:gap-20">
+          {/* Text */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="max-w-xl"
+          >
+            <p className="font-[family-name:var(--font-cormorant)] text-lg leading-[1.8] text-[var(--text-secondary)] md:text-xl">
+              Desde a infância, vejo além do que os olhos alcançam. Há mais de 25 anos, dedico a minha
+              vida a guiar pessoas através do véu do invisível — revelando verdades, reconectando
+              almas e iluminando caminhos que pareciam perdidos.
             </p>
-          </div>
-          <div className="flex flex-col mb-10 items-center justify-center w-full md:w-fit rounded-lg overflow-hidden shadow-lg max-w-[500px] h-[500px]">
-            <Image 
-              src="/galeria/cartomante-6.jpg" 
-              alt="Latifa Sensitiva - Vidente e Taróloga oferecendo orientação espiritual" 
-              className="w-full h-auto object-cover"
-              width={500}
-              height={500}
-              sizes="(max-width: 768px) 100vw, 500px"
-            />
-          </div>
+            <p className="mt-6 font-[family-name:var(--font-cormorant)] text-lg leading-[1.8] text-[var(--text-secondary)] md:text-xl">
+              O meu trabalho é baseado na verdade e no respeito ao destino de cada um. Antes de
+              qualquer ritual, faço previsões detalhadas para compreender a situação e garantir o
+              melhor resultado. Com conhecimento, prática e forte conexão espiritual, ofereço suporte
+              completo para quem busca clareza, amor e transformação.
+            </p>
+            <div className="mystic-divider mt-8">
+              <span className="text-[var(--gold)]">✦</span>
+            </div>
+          </motion.div>
+
+          {/* Image */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="relative w-full max-w-md flex-shrink-0"
+          >
+            <div className="glass-card overflow-hidden rounded-2xl p-2">
+              <div className="relative aspect-square overflow-hidden rounded-xl">
+                <Image
+                  src="/galeria/cartomante-6.jpg"
+                  alt="Latifa Sensitiva — Vidente e Taróloga com mais de 25 anos de experiência"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 400px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-void)]/40 to-transparent" />
+              </div>
+            </div>
+            {/* Decorative glow */}
+            <div className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-br from-[var(--gold-glow)] via-transparent to-[var(--crimson-soft)] blur-2xl" />
+          </motion.div>
         </div>
       </Container>
     </section>

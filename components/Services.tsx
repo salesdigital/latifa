@@ -1,145 +1,133 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { Heart, Eye, Shield, Coins, Quote } from 'lucide-react';
+import { Heart, Eye, Shield, Coins } from 'lucide-react';
 import WhatsAppButton from './WhatsAppButton';
+import Container from './Container';
 
 const serviceCategories = [
   {
-    title: "Adivinhação e Leituras",
+    title: "Revelações do Destino",
     icon: Eye,
     items: [
       "Tarô Online",
-      "Cartas",
-      "Búzios",
+      "Leitura de Cartas",
+      "Búzios Sagrados",
       "Leitura da Sorte",
       "Previsões Detalhadas"
     ]
   },
   {
-    title: "Limpeza e Proteção Espiritual",
+    title: "Blindagem Espiritual",
     icon: Shield,
     items: [
-      "Trabalhos contra inveja e mal olhado",
+      "Proteção contra inveja e mau-olhado",
       "Quebra de laço de almas",
       "Quebra de maldições",
-      "Descarrego e abre caminho",
-      "Blindagem Espiritual",
+      "Descarrego e abertura de caminhos",
+      "Blindagem energética completa",
       "Quebra de feitiçaria e magia negra"
     ]
   },
   {
-    title: "Amor e Relacionamentos",
+    title: "Reconexão Amorosa",
     icon: Heart,
     items: [
       "Amarração Amorosa",
       "Rituais de Amor",
       "União de casais",
       "Reconciliação amorosa",
-      "Fortalecimento do relacionamento"
+      "Fortalecimento do vínculo"
     ]
   },
   {
-    title: "Prosperidade e Sucesso",
+    title: "Caminhos da Abundância",
     icon: Coins,
     items: [
       "Trabalhos para prosperidade",
       "Sucesso em grandes negócios",
-      "Promoção na área profissional",
+      "Promoção profissional",
       "Abertura de caminhos financeiros",
-      "Crescimento profissional"
+      "Crescimento e realização"
     ]
   }
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.5
-    }
-  }
-};
-
 export default function Services() {
   return (
-    <section id="services" className="py-20 bg-gradient-to-b from-red-50 to-white">
-      <div className="container mx-auto px-4">
+    <section id="services" className="section-dark star-field relative py-20 md:py-28">
+      <Container>
         <motion.div
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          variants={containerVariants}
-          className="max-w-6xl mx-auto"
+          transition={{ duration: 0.8 }}
+          className="relative z-10 mb-14 text-center"
         >
-          <motion.h2 
-            variants={itemVariants}
-            className="text-4xl md:text-5xl font-tanpearl text-center mb-16 text-red-600"
-          >
-            Trabalhos Realizados
-          </motion.h2>
+          <p className="mb-3 font-[family-name:var(--font-dm-sans)] text-xs font-semibold uppercase tracking-[0.3em] text-[var(--gold)]">
+            ✦ Trabalhos sagrados ✦
+          </p>
+          <h2 className="font-tanpearl text-3xl font-bold text-[var(--text-primary)] md:text-5xl">
+            Rituais que Transformam
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl font-[family-name:var(--font-cormorant)] text-lg text-[var(--text-secondary)]">
+            Cada caso é único. Cada consulta é uma jornada personalizada de descoberta e cura,
+            com total sigilo e respeito ao seu caminho.
+          </p>
+        </motion.div>
 
-          <motion.p 
-            variants={itemVariants}
-            className="text-center mb-16 text-lg text-gray-700 max-w-3xl mx-auto"
-          >
-            Atendimento focado em dor real: problemas no relacionamento, distanciamento e dúvidas no amor. Cada consulta é personalizada para entender o seu caso com clareza.
-          </motion.p>
+        <div className="relative z-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+          {serviceCategories.map((category, index) => (
+            <motion.div
+              key={category.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              className="glass-card group relative overflow-hidden p-8"
+            >
+              {/* Hover glow effect */}
+              <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[var(--gold-glow)] opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {serviceCategories.map((category) => (
-              <motion.div
-                key={category.title}
-                variants={itemVariants}
-                className="bg-white rounded-lg p-8 relative shadow-lg hover:shadow-xl transition-all duration-300 group"
-              >
-                <Quote className="absolute top-6 right-6 w-8 h-8 text-orange-200 transition-colors duration-300 group-hover:text-orange-300" strokeWidth={1.5} />
-                <div className="flex items-center gap-3 mb-4">
-                  {category.icon && <category.icon className="w-7 h-7 text-orange-500" strokeWidth={1.5} />}
-                  <h3 className="text-2xl font-signora text-red-600">{category.title}</h3>
+              <div className="relative z-10">
+                <div className="mb-5 flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--gold-glow)] text-[var(--gold)]">
+                    <category.icon className="h-5 w-5" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="font-signora text-xl text-[var(--gold-bright)] md:text-2xl">
+                    {category.title}
+                  </h3>
                 </div>
-                <ul className="space-y-2">
+                <ul className="space-y-2.5">
                   {category.items.map((item, itemIndex) => (
-                    <motion.li
-                      key={itemIndex}
-                      variants={itemVariants}
-                      className="flex items-center space-x-2"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-orange-400" />
-                      <span className="text-gray-700">{item}</span>
-                    </motion.li>
+                    <li key={itemIndex} className="flex items-center gap-3 text-[var(--text-secondary)]">
+                      <span className="h-1 w-1 flex-shrink-0 rounded-full bg-[var(--gold)]" />
+                      <span className="font-[family-name:var(--font-cormorant)] text-base md:text-lg">{item}</span>
+                    </li>
                   ))}
                 </ul>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
 
-          <motion.div
-            variants={itemVariants}
-            className="mt-14 rounded-2xl border border-red-100 bg-white p-8 text-center shadow-lg"
-          >
-            <p className="mb-2 text-xl font-bold text-red-700 md:text-2xl">
-              Seu caso precisa de resposta rápida?
-            </p>
-            <p className="mb-6 text-gray-700">
-              Atendimento imediato, sigiloso e com orientação espiritual para relacionamentos.
-            </p>
-            <WhatsAppButton label="Falar agora no WhatsApp" />
-          </motion.div>
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="glass-card-strong relative z-10 mt-14 p-8 text-center md:p-12"
+        >
+          <h3 className="mb-3 font-tanpearl text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
+            O seu caso precisa de resposta agora?
+          </h3>
+          <p className="mb-6 font-[family-name:var(--font-cormorant)] text-lg text-[var(--text-secondary)]">
+            Atendimento imediato, sigiloso e com orientação espiritual profunda.
+          </p>
+          <WhatsAppButton label="Agendar consulta espiritual" />
         </motion.div>
-      </div>
+      </Container>
     </section>
   );
-} 
+}

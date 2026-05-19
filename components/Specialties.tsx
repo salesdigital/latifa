@@ -1,135 +1,119 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { Sparkles, ScrollText, HeartHandshake, Stars, Flower2, Briefcase, Quote } from 'lucide-react';
+import { Sparkles, ScrollText, HeartHandshake, Stars, Flower2, Briefcase } from 'lucide-react';
+import Container from './Container';
 
 const specialties = [
   {
-    title: "Cartomante / Vidente",
+    title: "Cartomante & Vidente",
     icon: Sparkles,
-    description: "Leitura da sorte ou adivinhação usando um baralho de cartas."
+    description: "Revelações profundas através da leitura de cartas — o destino fala para quem sabe ouvir."
   },
   {
-    title: "Consulta de cartas",
+    title: "Consulta de Cartas",
     icon: ScrollText,
-    description: "Além de trazer respostas, pode promover uma maior compreensão em torno de nós mesmos."
+    description: "Mais do que respostas: uma jornada de autoconhecimento e compreensão do seu caminho."
   },
   {
-    title: "Trabalho de união",
+    title: "Trabalho de União",
     icon: HeartHandshake,
-    description: "Reforça e destaca a ligação entre duas pessoas e o laço espiritual entre elas."
+    description: "Reforça e ilumina o laço espiritual entre duas almas, trazendo harmonia e reconexão."
   },
   {
     title: "Astrologia",
     icon: Stars,
     items: [
-      "Entenda quem você é",
-      "Conheça os seus traços de personalidade",
-      "Saiba seus pontos fortes e fracos",
-      "Evolua para uma pessoa melhor"
+      "Compreenda a sua essência mais profunda",
+      "Descubra os seus traços de personalidade",
+      "Conheça os seus pontos fortes e fragilidades",
+      "Evolua para a melhor versão de si"
     ]
   },
   {
     title: "Terapia Espiritual",
     icon: Flower2,
     items: [
-      "Eliminar energias negativas",
-      "Restaurar forças positivas",
-      "Processo de consciência emocional e espiritual",
-      "Correção das fragilidades"
+      "Eliminação de energias negativas",
+      "Restauração de forças positivas",
+      "Consciência emocional e espiritual",
+      "Cura de fragilidades internas"
     ]
   },
   {
-    title: "Negócios",
+    title: "Negócios & Prosperidade",
     icon: Briefcase,
     items: [
-      "Seja mais bem-sucedido",
-      "Esteja preparado para os seus negócios",
-      "Desperte novas ideias",
-      "Esteja aberto para crescer"
+      "Atração de sucesso e abundância",
+      "Preparação espiritual para grandes decisões",
+      "Despertar de novas oportunidades",
+      "Abertura para o crescimento"
     ]
   }
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.5
-    }
-  }
-};
-
 export default function Specialties() {
   return (
-    <section id="specialties" className="py-20 bg-gradient-to-b from-orange-50 to-white">
-      <div className="container mx-auto px-4">
+    <section id="specialties" className="section-cosmic relative py-20 md:py-28">
+      <Container>
         <motion.div
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          variants={containerVariants}
-          className="max-w-6xl mx-auto"
+          transition={{ duration: 0.8 }}
+          className="relative z-10 mb-14 text-center"
         >
-          <motion.h2 
-            variants={itemVariants}
-            className="text-4xl md:text-5xl font-tanpearl text-center mb-16 text-red-600"
-          >
-            Especialidades
-          </motion.h2>
+          <p className="mb-3 font-[family-name:var(--font-dm-sans)] text-xs font-semibold uppercase tracking-[0.3em] text-[var(--gold)]">
+            ✦ Áreas de atuação ✦
+          </p>
+          <h2 className="font-tanpearl text-3xl font-bold text-[var(--text-primary)] md:text-5xl">
+            Especialidades Espirituais
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl font-[family-name:var(--font-cormorant)] text-lg text-[var(--text-secondary)]">
+            O sucesso de cada tratamento espiritual é único — os resultados dependem da energia,
+            da fé e do caminho individual de cada alma.
+          </p>
+        </motion.div>
 
-          <motion.p 
-            variants={itemVariants}
-            className="text-center mb-16 text-lg text-gray-700 max-w-3xl mx-auto"
-          >
-            O sucesso de um tratamento espiritual depende de cada caso e os resultados podem variar de pessoa para pessoa.
-          </motion.p>
+        <div className="relative z-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {specialties.map((specialty, index) => (
+            <motion.div
+              key={specialty.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="glass-card group relative overflow-hidden p-8"
+            >
+              <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[var(--cosmic-purple)]/30 blur-2xl transition-all duration-500 group-hover:bg-[var(--gold-glow)]" />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {specialties.map((specialty) => (
-              <motion.div
-                key={specialty.title}
-                variants={itemVariants}
-                className="bg-white rounded-lg p-8 relative shadow-lg hover:shadow-xl transition-all duration-300 group"
-              >
-                <Quote className="absolute top-6 right-6 w-8 h-8 text-orange-200 transition-colors duration-300 group-hover:text-orange-300" strokeWidth={1.5} />
-                <div className="flex items-center gap-3 mb-4">
-                  {specialty.icon && <specialty.icon className="w-7 h-7 text-orange-500" strokeWidth={1.5} />}
-                  <h3 className="text-2xl font-signora text-red-600">{specialty.title}</h3>
+              <div className="relative z-10">
+                <div className="mb-5 flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--gold-glow)] text-[var(--gold)]">
+                    <specialty.icon className="h-5 w-5" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="font-signora text-xl text-[var(--gold-bright)]">{specialty.title}</h3>
                 </div>
+
                 {specialty.description ? (
-                  <p className="text-gray-700">{specialty.description}</p>
+                  <p className="font-[family-name:var(--font-cormorant)] text-base leading-relaxed text-[var(--text-secondary)] md:text-lg">
+                    {specialty.description}
+                  </p>
                 ) : (
-                  <ul className="space-y-2">
-                    {specialty.items?.map((item, itemIndex) => (
-                      <motion.li
-                        key={itemIndex}
-                        variants={itemVariants}
-                        className="flex items-center space-x-2"
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-orange-400" />
-                        <span className="text-gray-700">{item}</span>
-                      </motion.li>
+                  <ul className="space-y-2.5">
+                    {specialty.items?.map((item, i) => (
+                      <li key={i} className="flex items-center gap-3 text-[var(--text-secondary)]">
+                        <span className="h-1 w-1 flex-shrink-0 rounded-full bg-[var(--gold)]" />
+                        <span className="font-[family-name:var(--font-cormorant)] text-base">{item}</span>
+                      </li>
                     ))}
                   </ul>
                 )}
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </Container>
     </section>
   );
-} 
+}
